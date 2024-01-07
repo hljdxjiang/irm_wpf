@@ -47,7 +47,7 @@ namespace IRM.Service
                 Title = "soft",
                 StrokeThickness = 3,
                 MarkerType = MarkerType.Circle, // 设置标记类型
-                MarkerSize = 8,                 // 设置标记大小
+                MarkerSize = 6,                 // 设置标记大小
                 MarkerFill = OxyColors.Green    // 设置标记填充颜色
             };
             var lineSeriesY = new LineSeries
@@ -57,7 +57,7 @@ namespace IRM.Service
                 StrokeThickness = 3,
                 Title = "medium",
                 MarkerType = MarkerType.Square, // 设置标记类型
-                MarkerSize = 8,                 // 设置标记大小
+                MarkerSize = 6,                 // 设置标记大小
                 MarkerFill = OxyColors.Red    // 设置标记填充颜色
             };
             var lineSeriesZ = new LineSeries
@@ -67,7 +67,7 @@ namespace IRM.Service
                 Title = "hard",
                 StrokeThickness = 3,
                 MarkerType = MarkerType.Triangle, // 设置标记类型
-                MarkerSize = 8,                 // 设置标记大小
+                MarkerSize = 6,                 // 设置标记大小
                 MarkerFill = OxyColors.Blue    // 设置标记填充颜色
             };
 
@@ -106,7 +106,7 @@ namespace IRM.Service
                 plotModel.Series.Add(lineSeriesX);
                 plotModel.Series.Add(lineSeriesY);
                 plotModel.Series.Add(lineSeriesZ);
-                buildLineAnnotation(plotModel);
+                //buildLineAnnotation(plotModel);
 
                 //dataGrid.BindingContext = new DataViewModel();
                 //dataGrid.ItemsSource = dataModels;
