@@ -1,0 +1,33 @@
+﻿<Window x:Class="IRM.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:oxy="http://oxyplot.org/wpf"
+        xmlns:local="clr-namespace:IRM"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="800" Width="1200">
+    <Grid>
+        <StackPanel Orientation="Vertical">
+            <StackPanel Orientation="Horizontal" Height="30" Margin="20" VerticalAlignment="Top">
+                <Label Name="filePath" Content="文件路径:" Width="400"  Margin="5"/>
+                <Button Content="选择文件" Click="Button_Click" Margin="5" />
+                <Button Content="开始处理" Click="Button_Click_1" Margin="5"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Height="450" VerticalAlignment="Top">
+                <oxy:PlotView Height="450" Width="600" x:Name="plotView"></oxy:PlotView>
+                <DataGrid Name="dataGrid" Height="450">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="SampleID" Binding="{Binding SampleID}"></DataGridTextColumn>
+                        <DataGridTextColumn Header="Temperature" Binding="{Binding Temperature}"></DataGridTextColumn>
+                        <DataGridTextColumn Header="Soft" Binding="{Binding Soft}"></DataGridTextColumn>
+                        <DataGridTextColumn Header="Medium" Binding="{Binding Medium}"></DataGridTextColumn>
+                        <DataGridTextColumn Header="Hard" Binding="{Binding Hard}"></DataGridTextColumn>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" VerticalAlignment="Center" x:Name="btns"></StackPanel>
+
+        </StackPanel>
+    </Grid>
+</Window>
