@@ -41,7 +41,7 @@ namespace IRM
             var result = new OpenFileDialog();
             if (result.ShowDialog() == true) {
 
-                filePath.Name = "文件路径:"+result.FileName;
+                filePath.Content = "文件路径:"+result.FileName;
                 file = result.FileName;
             }
         }
@@ -92,6 +92,7 @@ namespace IRM
 
             var nextButtons = new StackPanel();
             nextButtons.Orientation = Orientation.Horizontal;
+            nextButtons.HorizontalAlignment = System.Windows.HorizontalAlignment.Center;
 
             if (idx > 0)
             {
@@ -139,9 +140,9 @@ namespace IRM
                 FontSize = 20,
             });
             btns.Children.Add(nextButtons);
-            dataGrid.DataContext = list;
             dataGrid.HeadersVisibility = DataGridHeadersVisibility.Column;
             dataGrid.Height = 450;
+            dataGrid.ItemsSource= list;
 
 
             /*DataViewModel dataView = new DataViewModel();
@@ -160,7 +161,7 @@ namespace IRM
         private async void download_click(string key, PlotModel plotModel)
         {
             var result = new OpenFolderDialog();
-            if (result.ShowDialog() != null)
+            if (result.ShowDialog() ==true)
             {
                 var fileName = System.IO.Path.GetFileName(file) + key + ".svg";
                 var outPath = result.FolderName;

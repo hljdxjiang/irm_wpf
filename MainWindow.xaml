@@ -18,15 +18,15 @@
                 <oxy:PlotView Height="450" Width="600" x:Name="plotView"></oxy:PlotView>
                 <DataGrid Name="dataGrid" Height="450">
                     <DataGrid.Columns>
-                        <DataGridTextColumn Header="SampleID" Binding="{Binding SampleID}"></DataGridTextColumn>
-                        <DataGridTextColumn Header="Temperature" Binding="{Binding Temperature}"></DataGridTextColumn>
-                        <DataGridTextColumn Header="Soft" Binding="{Binding Soft}"></DataGridTextColumn>
-                        <DataGridTextColumn Header="Medium" Binding="{Binding Medium}"></DataGridTextColumn>
-                        <DataGridTextColumn Header="Hard" Binding="{Binding Hard}"></DataGridTextColumn>
+                        <DataGridTextColumn Header="SampleID" Width="100" Binding="{Binding SampleID}"></DataGridTextColumn>
+                        <DataGridTextColumn Header="Temperature" Width="100" Binding="{Binding Temperature}"></DataGridTextColumn>
+                        <DataGridTextColumn Header="Soft" Width="100" Binding="{Binding XValue}"></DataGridTextColumn>
+                        <DataGridTextColumn Header="Medium" Width="100" Binding="{Binding YValue}"></DataGridTextColumn>
+                        <DataGridTextColumn Header="Hard" Width="100" Binding="{Binding ZValue}"></DataGridTextColumn>
                     </DataGrid.Columns>
                 </DataGrid>
             </StackPanel>
-            <StackPanel Orientation="Horizontal" VerticalAlignment="Center" x:Name="btns"></StackPanel>
+            <StackPanel Orientation="Vertical" VerticalAlignment="Center" x:Name="btns"></StackPanel>
 
         </StackPanel>
     </Grid>
