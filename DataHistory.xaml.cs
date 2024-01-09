@@ -22,7 +22,7 @@ namespace IRM
     /// Interaction logic for MainWindow.xaml
     /// </summary>
     public partial class DataHistory : Window
-    {   
+    {
         public ICommand ViewCommand { get; private set; }
 
         public ICommand DelCommand { get; private set; }
