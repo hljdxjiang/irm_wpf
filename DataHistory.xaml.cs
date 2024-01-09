@@ -54,6 +54,15 @@ namespace IRM
 
         private void DelCommandExecute(DataList parameter)
         {
+            using (var context=new MyDbContext())
+            {
+                context.DataLists.Remove(parameter);
+                var list=context.DataDetails.Where(item=>item.DataID==parameter.ID);
+                if(list.Any()){
+                    context.DataDetails.RemoveRange(list);
+                }
+                context.SaveChanges();
+            }
             // 操作删除
         }
     }
