@@ -3,6 +3,14 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="About" Height="200" Width="300">
     <Grid>
-        <TextBlock Text="Product Information" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="20"/>
+        <TextBlock Text="三轴热退磁数据处理软件" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="30" LineHeight="60"/>
+        <TextBlock Text="本软件适用于 AIGIOJR6 旋转磁力仪测试三轴等温剩磁系统热退磁数据的处理，默认 X、Y、Z 数据为软磁成分、中间磁成分和硬磁成分，使用过程中还需根据具体情况进行处理。" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="20"/>
+        <TextBlock Text="若有任何问题请联系开发者" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="20"/>
+        <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="20">
+            曹勇 E-mail: 
+            <Hyperlink NavigateUri="geocao@126.com">
+                geocao@126.com
+            </Hyperlink>
+        </TextBlock>
     </Grid>
 </Window>
