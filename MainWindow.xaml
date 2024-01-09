@@ -1,7 +1,7 @@
 ﻿<Window x:Class="IRM.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="Your WPF App" Height="350" Width="525">
+        Title="三轴热退磁数据处理软件" Height="650" Width="1200">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
