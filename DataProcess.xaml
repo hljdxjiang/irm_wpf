@@ -1,11 +1,9 @@
-﻿<Window x:Class="IRM.MainWindow"
+﻿<Page x:Class="IRM.DataProcess"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:oxy="http://oxyplot.org/wpf"
-        xmlns:local="clr-namespace:IRM"
-        mc:Ignorable="d"
         Title="数据处理" Height="650" Width="1200">
     <Grid>
         <StackPanel Orientation="Vertical">
@@ -20,9 +18,9 @@
                     <DataGrid.Columns>
                         <DataGridTextColumn Header="SampleID" Width="100" Binding="{Binding SampleID}"></DataGridTextColumn>
                         <DataGridTextColumn Header="Temperature" Width="100" Binding="{Binding Temperature}"></DataGridTextColumn>
-                        <DataGridTextColumn Header="Soft" Width="100" Binding="{Binding XValue}" StringFormat={}{0:F6}}></DataGridTextColumn>
-                        <DataGridTextColumn Header="Medium" Width="100" Binding="{Binding YValue}" StringFormat={}{0:F6}}></DataGridTextColumn>
-                        <DataGridTextColumn Header="Hard" Width="100" Binding="{Binding ZValue}" StringFormat={}{0:F6}}></DataGridTextColumn>
+                        <DataGridTextColumn Header="Soft" Width="100" Binding="{Binding XValue}" ></DataGridTextColumn>
+                        <DataGridTextColumn Header="Medium" Width="100" Binding="{Binding YValue}" ></DataGridTextColumn>
+                        <DataGridTextColumn Header="Hard" Width="100" Binding="{Binding ZValue}"></DataGridTextColumn>
                     </DataGrid.Columns>
                 </DataGrid>
             </StackPanel>
@@ -30,4 +28,4 @@
 
         </StackPanel>
     </Grid>
-</Window>
+</Page>

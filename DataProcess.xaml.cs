@@ -20,7 +20,7 @@ namespace IRM
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class DataProcess : Window
+    public partial class DataProcess : Page
     {
         private String file;
 

@@ -22,8 +22,7 @@ namespace IRM
     /// </summary>
     public partial class MainWindow : Window
     {
-        public partial class MainWindow : Window
-    {
+
         public MainWindow()
         {
             InitializeComponent();
@@ -38,7 +37,7 @@ namespace IRM
 
         private void DataHistory_Click(object sender, RoutedEventArgs e)
         {
-            MainFrame.Navigate(new DataProcess());
+            MainFrame.Navigate(new DataHistory());
         }
 
         private void About_Click(object sender, RoutedEventArgs e)

@@ -18,7 +18,4 @@
         <!-- 内容区域 -->
         <Frame x:Name="MainFrame" Grid.Row="1"/>
     </Grid>
-        <Window.Icon>
-        <Image Source="logo.ico"/>
-    </Window.Icon>
 </Window>

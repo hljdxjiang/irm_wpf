@@ -22,12 +22,15 @@ namespace IRM
     /// </summary>
     public partial class AboutWindow : Window
     {
-        public partial class AboutWindow : Window
-    {
         public AboutWindow()
         {
             InitializeComponent();
             
+        }
+
+        private void Button_Close(object sender, RoutedEventArgs e)
+        {
+            Close();
         }
     }
 }

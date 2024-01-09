@@ -22,7 +22,7 @@ namespace IRM
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class DataHistory : Window
+    public partial class DataHistory : Page
     {
         public ICommand ViewCommand { get; private set; }
 
@@ -31,10 +31,6 @@ namespace IRM
         public DataHistory()
         {
             InitializeComponent();
-
-            ViewCommand = new RelayCommand<DataList>(ViewCommandExecute);
-
-            DelCommand = new RelayCommand<DataList>(DelCommandExecute);
 
         }
 
