@@ -40,7 +40,9 @@ namespace IRM
 
         private void LoadList(){
             using (var context = new MyDbContext()){
-                var list=context.DataLists.ToList();
+                DateTime currentDate = DateTime.Now;
+                DateTime thirtyDaysAgo = currentDate.AddDays(-30);
+                var list=context.DataLists.Where(data => data.CreateTime >= thirtyDaysAgo).ToList();//只查30天以内的数据
                 //TODO 给dataGrid绑定list；
             }
         }
