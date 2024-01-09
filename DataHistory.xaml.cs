@@ -41,7 +41,7 @@ namespace IRM
         private void LoadList(){
             using (var context = new MyDbContext()){
                 var list=context.DataLists.ToList();
-                //给dataGrid绑定list；
+                //TODO 给dataGrid绑定list；
             }
         }
 
