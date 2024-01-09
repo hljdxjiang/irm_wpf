@@ -223,9 +223,9 @@ namespace IRM.Service
             double.TryParse(list[4], out z);
             int.TryParse(list[5], out s6);
             var pow = Math.Pow(10, s6);
-            xValue = Math.Round(Math.Abs(x * pow), 4);
-            yValue = Math.Round(Math.Abs(y * pow), 4);
-            zValue = Math.Round(Math.Abs(z * pow), 4);
+            xValue = Math.Round(Math.Abs(x * pow), 6);
+            yValue = Math.Round(Math.Abs(y * pow), 6);
+            zValue = Math.Round(Math.Abs(z * pow), 6);
             this.maxYValue = maxYValue > xValue ? maxYValue : xValue;
         }   
     }
