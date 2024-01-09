@@ -15,6 +15,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.IO;
 using irm_wpf.Entity;
+using irm_wpf.EFCore;
 
 namespace IRM
 {
@@ -35,6 +36,13 @@ namespace IRM
 
             DelCommand = new RelayCommand<DataList>(DelCommandExecute);
 
+        }
+
+        private void LoadList(){
+            using (var context = new MyDbContext()){
+                var list=context.DataLists.ToList();
+                //给dataGrid绑定list；
+            }
         }
 
         private void ViewCommandExecute(DataList parameter)
