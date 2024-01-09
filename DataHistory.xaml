@@ -15,6 +15,18 @@
                 <DataGridTextColumn Header="CreateTime" Width="100" Binding="{Binding CreateTime}"></DataGridTextColumn>
                 <DataGridTextColumn Header="Medium" Width="100" Binding="{Binding YValue}"></DataGridTextColumn>
                 <DataGridTextColumn Header="Hard" Width="100" Binding="{Binding ZValue}"></DataGridTextColumn>
+                <!-- 操作按钮列 --> 
+                <DataGridTemplateColumn Header="Opera">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal">
+                                <Button Content="查看" Command="{Binding ViewCommand}" CommandParameter="{Binding}" />
+                                <Button Content="删除" Command="{Binding DelCommand}" CommandParameter="{Binding}"/>
+                                <!-- 其他按钮 -->
+                            </StackPanel>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
             </DataGrid.Columns>
         </DataGrid>
     </Grid>
