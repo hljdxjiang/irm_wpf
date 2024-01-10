@@ -16,7 +16,7 @@ namespace irm_wpf.EFCore
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlite("Data Source=/data/yourDatabase.db");
+            optionsBuilder.UseSqlite("Data Source="+DatabaseInitializer.databasePath);
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
