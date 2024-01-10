@@ -18,9 +18,9 @@
                     <DataGrid.Columns>
                         <DataGridTextColumn Header="SampleID" Width="100" Binding="{Binding SampleID}"></DataGridTextColumn>
                         <DataGridTextColumn Header="Temperature" Width="100" Binding="{Binding Temperature}"></DataGridTextColumn>
-                        <DataGridTextColumn Header="Soft" Width="100" Binding="{Binding XValue}" ></DataGridTextColumn>
-                        <DataGridTextColumn Header="Medium" Width="100" Binding="{Binding YValue}" ></DataGridTextColumn>
-                        <DataGridTextColumn Header="Hard" Width="100" Binding="{Binding ZValue}"></DataGridTextColumn>
+                        <DataGridTextColumn Header="Soft" Width="100" Binding="{Binding XValue , StringFormat={}{0:F6}}}" ></DataGridTextColumn>
+                        <DataGridTextColumn Header="Medium" Width="100" Binding="{Binding YValue , StringFormat={}{0:F6}}}" ></DataGridTextColumn>
+                        <DataGridTextColumn Header="Hard" Width="100" Binding="{Binding ZValue , StringFormat={}{0:F6}}}"></DataGridTextColumn>
                     </DataGrid.Columns>
                 </DataGrid>
             </StackPanel>

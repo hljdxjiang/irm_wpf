@@ -21,7 +21,7 @@ namespace IRM.Service
         public void Process(String filePath, out Dictionary<string, List<string>> _dictionary)
         {
             _dictionary = new Dictionary<string, List<string>>();
-            int lineCnt=0;
+            int lineCnt = 0;
             if (!filePath.Equals(String.Empty))
             {
                 using (StreamReader sr = new StreamReader(filePath))
@@ -34,28 +34,47 @@ namespace IRM.Service
                     }
                 }
             }
-            saveData(getFileName(filePath),_dictionary,lineCnt);
+            saveData(getFileName(filePath), _dictionary, lineCnt);
 
         }
 
-        private void saveData(String fileName,Dictionary<string, List<string>> dict,int Cnt){
-            using(var context=new MyDbContext()){
-                string fileId=SnowflakeIdGenerator.NextId().ToString();
+        private void saveData(String fileName, Dictionary<string, List<string>> dict, int Cnt)
+        {
+            using (var context = new MyDbContext())
+            {
+                string fileId = SnowflakeIdGenerator.NextId().ToString();
                 DataList dataList = new DataList
                 {
-                    FileId=fileId,
-                    CreateTime=DateTime.Now,
-                    SampleCnt=Cnt
+                    FileId = fileId,
+                    CreateTime = DateTime.Now,
+                    SampleCnt = Cnt
                 };
                 context.DataLists.Add(dataList);
-                if(dict!=null&&dict.Count>0){
+                if (dict != null && dict.Count > 0)
+                {
                     foreach (var pair in dict)
                     {
-                        if(pair.Value.Any()){
-                            foreach(var line  in pair.Value){
-                                DataDetail dataDetail=new DataDetail{
-                                    FileId=pair.Key,
-                                    OrgLine=line
+                        if (pair.Value.Any())
+                        {
+                            foreach (var line in pair.Value)
+                            {
+                                LineProcessService lineProcess = new LineProcessService();
+                                var strs = lineProcess.ProcessLine(line);
+                                double xValue, yValue, zValue;
+                                getXYZValue(strs, out xValue, out yValue, out zValue);
+                                DataDetail dataDetail = new DataDetail
+                                {
+                                    FileId = pair.Key,
+                                    SampleID = strs[0],
+                                    Temperature = strs[1],
+                                    XValue = xValue.ToString(),
+                                    YValue = yValue.ToString(),
+                                    ZValue = zValue.ToString(),
+                                    XOrg = strs[2],
+                                    YOrg = strs[3],
+                                    ZOrg = strs[4],
+                                    C = strs[5],
+                                    OrgLine = line
                                 };
                                 context.DataDetails.Add(dataDetail);
                             }
@@ -67,7 +86,8 @@ namespace IRM.Service
         }
 
 
-        private string getFileName(string filePath){
+        private string getFileName(string filePath)
+        {
             return Path.GetFileName(filePath);
         }
 
@@ -100,6 +120,20 @@ namespace IRM.Service
         private string getSampleTitle(String line)
         {
             return line.Split(Constant.LineSpit)[0];
+        }
+
+        private void getXYZValue(List<String> list, out double xValue, out double yValue, out double zValue)
+        {
+            double x, y, z;
+            int s6;
+            double.TryParse(list[2], out x);
+            double.TryParse(list[3], out y);
+            double.TryParse(list[4], out z);
+            int.TryParse(list[5], out s6);
+            var pow = Math.Pow(10, s6);
+            xValue = Math.Round(Math.Abs(x * pow), 6);
+            yValue = Math.Round(Math.Abs(y * pow), 6);
+            zValue = Math.Round(Math.Abs(z * pow), 6);
         }
     }
 }
