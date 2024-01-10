@@ -1,4 +1,7 @@
 ﻿using IRM.common;
+using irm_wpf.common;
+using irm_wpf.EFCore;
+using irm_wpf.Entity;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -18,6 +21,7 @@ namespace IRM.Service
         public void Process(String filePath, out Dictionary<string, List<string>> _dictionary)
         {
             _dictionary = new Dictionary<string, List<string>>();
+            int lineCnt=0;
             if (!filePath.Equals(String.Empty))
             {
                 using (StreamReader sr = new StreamReader(filePath))
@@ -25,11 +29,46 @@ namespace IRM.Service
                     String line = null;
                     while ((line = sr.ReadLine()) != null)
                     {
+                        lineCnt++;
                         LineProcess(line, _dictionary);
                     }
                 }
             }
+            saveData(getFileName(filePath),_dictionary,lineCnt);
 
+        }
+
+        private void saveData(String fileName,Dictionary<string, List<string>> dict,int Cnt){
+            using(var context=new MyDbContext()){
+                string fileId=SnowflakeIdGenerator.NextId().ToString();
+                DataList dataList = new DataList
+                {
+                    FileId=fileId,
+                    CreateTime=DateTime.Now,
+                    SampleCnt=Cnt
+                };
+                context.DataLists.Add(dataList);
+                if(dict!=null&&dict.Count>0){
+                    foreach (var pair in dict)
+                    {
+                        if(pair.Value.Any()){
+                            foreach(var line  in pair.Value){
+                                DataDetail dataDetail=new DataDetail{
+                                    FileId=pair.Key,
+                                    OrgLine=line
+                                };
+                                context.DataDetails.Add(dataDetail);
+                            }
+                        }
+                    }
+                }
+                context.SaveChanges();
+            }
+        }
+
+
+        private string getFileName(string filePath){
+            return Path.GetFileName(filePath);
         }
 
         /**

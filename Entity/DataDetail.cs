@@ -7,7 +7,7 @@ namespace irm_wpf.Entity {
     public class DataDetail {
 
         public int ID { get; set; }
-        public int DataID { get; set; }
+        public required string FileId{get;set;}
         public string SampleID { get; set; }
         public string Temperature { get; set; }
         public string XValue { get; set; }
@@ -17,5 +17,7 @@ namespace irm_wpf.Entity {
         public string YOrg { get; set; }
         public string ZOrg { get; set; }
         public string C { get; set; }
+
+        public string OrgLine{ get; set; }
     }
 }

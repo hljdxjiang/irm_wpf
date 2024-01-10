@@ -7,6 +7,8 @@ namespace irm_wpf.Entity {
     public class DataList {
         public int ID { get; set; }
 
+        public required string FileId{get;set;}
+
         public required string FileName { get; set; }
 
         public DateTime CreateTime { get; set; }

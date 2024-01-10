@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using irm_wpf.Entity;
 using Microsoft.EntityFrameworkCore;
+using OxyPlot.Series;
 
 namespace irm_wpf.EFCore
 {
@@ -22,12 +23,13 @@ namespace irm_wpf.EFCore
         {
             modelBuilder.Entity<DataList>(b=>{
                 b.HasKey(p=>p.ID);
+                b.HasIndex(p=>p.FileId).IsUnique();
                 b.HasIndex(p => p.FileName);
             });
                 
             modelBuilder.Entity<DataDetail>(b=>{
                 b.HasKey(p=>p.ID);
-                b.HasIndex(p => p.DataID);
+                b.HasIndex(p => p.FileId);
             });
         }
 

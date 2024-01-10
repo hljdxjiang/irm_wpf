@@ -20,8 +20,8 @@
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <StackPanel Orientation="Horizontal">
-                                <Button Content="查看" Command="{Binding ViewCommand}" CommandParameter="{Binding}" />
-                                <Button Content="删除" Command="{Binding DelCommand}" CommandParameter="{Binding}"/>
+                                <Button Content="查看" Click="ViewButton_Click"/>
+                                <Button Content="删除" Click="DeleteButton_Click"/>
                                 <!-- 其他按钮 -->
                             </StackPanel>
                         </DataTemplate>

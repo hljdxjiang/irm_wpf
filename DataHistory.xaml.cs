@@ -24,42 +24,79 @@ namespace IRM
     /// </summary>
     public partial class DataHistory : Page
     {
-        public ICommand ViewCommand { get; private set; }
-
-        public ICommand DelCommand { get; private set; }
-
         public DataHistory()
         {
             InitializeComponent();
 
         }
 
-        private void LoadList(){
-            using (var context = new MyDbContext()){
+        private void LoadList()
+        {
+            using (var context = new MyDbContext())
+            {
                 DateTime currentDate = DateTime.Now;
                 DateTime thirtyDaysAgo = currentDate.AddDays(-30);
-                var list=context.DataLists.Where(data => data.CreateTime >= thirtyDaysAgo).ToList();//只查30天以内的数据
+                var list = context.DataLists.Where(data => data.CreateTime >= thirtyDaysAgo).ToList();//只查30天以内的数据
                 //TODO 给dataGrid绑定list；
             }
         }
 
-        private void ViewCommandExecute(DataList parameter)
+        private void DeleteButton_Click(object sender, RoutedEventArgs e)
         {
-            // 操作查看
-        }
-
-        private void DelCommandExecute(DataList parameter)
-        {
-            using (var context=new MyDbContext())
+            // Get the selected item
+            DataList selectedItem = (DataList)dataGrid.SelectedItem;
+            using (var context = new MyDbContext)
             {
-                context.DataLists.Remove(parameter);
-                var list=context.DataDetails.Where(item=>item.DataID==parameter.ID);
-                if(list.Any()){
+                context.DataLists.Remove(selectedItem);
+                var list = context.DataDetails.Where(item => item.FileId == selectedItem.FileId);
+                if (list.Any())
+                {
                     context.DataDetails.RemoveRange(list);
                 }
                 context.SaveChanges();
+
             }
-            // 操作删除
+        }
+
+        private void buildDictory(DataDetail[] details，out Dictionary<string, List<string>> _dictionary)
+        {
+            _dictionary = new Dictionary<string, List<string>>();
+            if (details.Length > 0)
+            {
+                foreach (var item in details)
+                {
+                    List<string> list = null;
+                    try
+                    {
+                        list = _dictionary.First(x => x.Key == item.SampleID).Value;
+                    }
+                    catch (InvalidOperationException)
+                    {
+                        list = new List<string>();
+                    }
+                    list.Add(s);
+                    _dictionary[item.SampleID] = list;
+                }
+            }
+        }
+
+
+
+        private void ViewButton_Click(object sender, RoutedEventArgs e)
+        {
+            // Get the selected item
+            DataList selectedItem = (DataList)dataGrid.SelectedItem;
+            using (var context = new MyDbContext())
+            {
+                var list = context.DataDetails.Where(item => item.FileId == selectedItem.FileId);
+                if(list.Any()){
+                    HistoryWIndow historyWIndow=new HistoryWIndow();
+                    Dictionary<string, List<string>>  _dictionary;
+                    buildDictory(list.ToArray(),out _dictionary);
+                    historyWIndow.DataDictionary=_dictionary;
+                    historyWIndow.ShowDialog();
+                }
+            }
         }
     }
 }
