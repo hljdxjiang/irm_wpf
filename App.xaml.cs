@@ -11,14 +11,13 @@ namespace IRM
     public partial class App : Application
     {
         protected override void OnStartup(StartupEventArgs e)
-    {
-        base.OnStartup(e);
+        {
+            base.OnStartup(e);
+            // 调用初始化数据库的方法
+            DatabaseInitializer.InitializeDatabase();
 
-        // 调用初始化数据库的方法
-        DatabaseInitializer.InitializeDatabase();
-
-        // 继续应用程序启动逻辑
-    }
+            // 继续应用程序启动逻辑
+        }
     }
 
 }
